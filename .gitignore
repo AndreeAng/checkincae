@@ -1,0 +1,36 @@
+## OS
+.DS_Store
+Thumbs.db
+
+## Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+## Node
+node_modules/
+**/node_modules/
+
+## Env files
+.env
+backend/.env
+
+## Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
+**/.dart_tool/
+**/.metadata
+**/build/
+mobile_web/build/
+
+## IDE
+.idea/
+.vscode/
+*.iml
+
+## Prisma
+backend/prisma/migrations/

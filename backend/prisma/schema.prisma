@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EMPLOYEE
+}
+
+enum CheckType {
+  IN
+  OUT
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  fullName     String
+  username     String    @unique
+  passwordHash String
+  role         Role      @default(EMPLOYEE)
+  workSiteId   Int?
+  workSite     WorkSite? @relation(fields: [workSiteId], references: [id])
+  checkins     Checkin[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model WorkSite {
+  id        Int       @id @default(autoincrement())
+  name      String
+  users     User[]
+  checkins  Checkin[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Checkin {
+  id         Int       @id @default(autoincrement())
+  userId     Int
+  workSiteId Int
+  type       CheckType
+  occurredAt DateTime
+  latitude   Float
+  longitude  Float
+  activity   String
+  photoUrl   String
+  createdAt  DateTime  @default(now())
+
+  user     User     @relation(fields: [userId], references: [id])
+  workSite WorkSite @relation(fields: [workSiteId], references: [id])
+
+  @@index([userId, occurredAt])
+}
