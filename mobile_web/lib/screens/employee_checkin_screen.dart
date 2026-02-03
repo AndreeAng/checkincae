@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import '../models/checkin.dart';
 import '../providers/auth_provider.dart';
 import '../utils/photo_cache.dart';
+import '../utils/bo_time.dart';
 import 'employee_history_screen.dart';
 
 class EmployeeCheckinScreen extends StatefulWidget {
@@ -219,8 +220,9 @@ class _EmployeeCheckinScreenState extends State<EmployeeCheckinScreen> {
     final auth = context.watch<AuthProvider>();
     final workSiteName = auth.user?.workSite?.name ?? 'Sin asignación';
     final formatter = DateFormat("EEEE d 'de' MMMM 'de' yyyy, h:mm a", 'es');
-    final lastCheckinDate =
-        _lastCheckin == null ? null : formatter.format(_lastCheckin!.occurredAt);
+    final lastCheckinDate = _lastCheckin == null
+        ? null
+        : formatter.format(toBoliviaTime(_lastCheckin!.occurredAt));
 
     return Scaffold(
       body: SafeArea(

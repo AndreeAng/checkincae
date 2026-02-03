@@ -32,9 +32,10 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
     try {
       final api = context.read<AuthProvider>().api();
       final users = await api.getUsers();
-      final today = DateTime.now();
-      final from = DateFormat('yyyy-MM-dd').format(today);
-      final to = DateFormat('yyyy-MM-dd').format(today);
+      final now = DateTime.now();
+      final date = DateFormat('yyyy-MM-dd').format(now);
+      final from = '${date}T00:00:00-04:00';
+      final to = '${date}T23:59:59-04:00';
       final checkins = await api.getAdminCheckins(from: from, to: to);
       setState(() {
         _employeesCount = users.length;

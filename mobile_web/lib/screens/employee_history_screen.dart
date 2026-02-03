@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../models/checkin.dart';
 import '../providers/auth_provider.dart';
 import '../utils/photo_url.dart';
+import '../utils/bo_time.dart';
 
 class EmployeeHistoryScreen extends StatefulWidget {
   const EmployeeHistoryScreen({super.key});
@@ -78,6 +79,7 @@ class _EmployeeHistoryScreenState extends State<EmployeeHistoryScreen> {
             itemBuilder: (context, index) {
               final item = items[index];
               final tipo = item.type == 'IN' ? 'Ingreso' : 'Salida';
+              final occurred = toBoliviaTime(item.occurredAt);
               final photoUrl = resolvePhotoUrl(item.photoUrl, baseUrl);
               return Card(
                 child: Padding(
@@ -86,7 +88,7 @@ class _EmployeeHistoryScreenState extends State<EmployeeHistoryScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '$tipo - ${formatter.format(item.occurredAt)}',
+                        '$tipo - ${formatter.format(occurred)}',
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 8),

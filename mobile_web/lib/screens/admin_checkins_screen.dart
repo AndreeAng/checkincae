@@ -7,6 +7,7 @@ import '../models/user.dart';
 import '../providers/auth_provider.dart';
 import '../utils/photo_url.dart';
 import '../utils/web_download.dart';
+import '../utils/bo_time.dart';
 
 class AdminCheckinsScreen extends StatefulWidget {
   const AdminCheckinsScreen({super.key});
@@ -227,6 +228,7 @@ class _AdminCheckinsScreenState extends State<AdminCheckinsScreen> {
                   itemBuilder: (context, index) {
                     final item = items[index];
                     final tipo = item.type == 'IN' ? 'Ingreso' : 'Salida';
+                    final occurred = toBoliviaTime(item.occurredAt);
                     final photoUrl = resolvePhotoUrl(item.photoUrl, baseUrl);
                     return Card(
                       elevation: 2,
@@ -302,7 +304,7 @@ class _AdminCheckinsScreenState extends State<AdminCheckinsScreen> {
                                   ),
                                 ),
                                 Text(
-                                  formatter.format(item.occurredAt),
+                                  formatter.format(occurred),
                                   style: TextStyle(
                                     color: dark,
                                     fontWeight: FontWeight.w600,
