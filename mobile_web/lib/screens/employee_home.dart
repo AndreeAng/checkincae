@@ -17,7 +17,6 @@ class _EmployeeHomeState extends State<EmployeeHome> {
   final _screens = const [
     EmployeeCheckinScreen(),
     EmployeeHistoryScreen(),
-    ProfileScreen(),
   ];
 
   @override
@@ -35,10 +34,6 @@ class _EmployeeHomeState extends State<EmployeeHome> {
           NavigationDestination(
             icon: Icon(Icons.history),
             label: 'Historial',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person),
-            label: 'Mi cuenta',
           ),
         ],
       ),

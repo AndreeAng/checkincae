@@ -8,6 +8,8 @@ import '../models/user.dart';
 import 'admin_checkins_screen.dart';
 import 'admin_users_screen.dart';
 import 'admin_worksites_screen.dart';
+import 'profile_screen.dart';
+import '../widgets/app_top_bar.dart';
 
 class AdminDashboardScreen extends StatefulWidget {
   const AdminDashboardScreen({super.key});
@@ -58,21 +60,22 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
     final dateText = DateFormat("EEEE d 'de' MMMM, yyyy", 'es').format(DateTime.now());
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: dark,
-        foregroundColor: Colors.white,
-        title: Row(
-          children: const [
-            Icon(Icons.access_time_rounded, color: Color(0xFFF59E0B)),
-            SizedBox(width: 8),
-            Text('Check-In CAE'),
-          ],
-        ),
+      appBar: buildAppTopBar(
+        title: 'Check-In CAE',
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const ProfileScreen()),
+              );
+            },
+            icon: const Icon(Icons.person),
+            tooltip: 'Mi cuenta',
+          ),
           IconButton(
             onPressed: () => auth.logout(),
             icon: const Icon(Icons.logout),
-            tooltip: 'Cerrar sesión',
+            tooltip: 'Cerrar sesi?n',
           ),
         ],
       ),

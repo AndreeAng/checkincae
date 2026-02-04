@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/auth_provider.dart';
+import '../widgets/app_top_bar.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -12,8 +13,8 @@ class ProfileScreen extends StatelessWidget {
     final user = auth.user;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mi cuenta'),
+      appBar: buildAppTopBar(
+        title: 'Mi cuenta',
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

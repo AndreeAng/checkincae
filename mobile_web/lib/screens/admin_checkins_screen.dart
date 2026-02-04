@@ -8,6 +8,7 @@ import '../providers/auth_provider.dart';
 import '../utils/photo_url.dart';
 import '../utils/web_download.dart';
 import '../utils/bo_time.dart';
+import '../widgets/app_top_bar.dart';
 
 class AdminCheckinsScreen extends StatefulWidget {
   const AdminCheckinsScreen({super.key});
@@ -120,8 +121,8 @@ class _AdminCheckinsScreenState extends State<AdminCheckinsScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Registros de ingreso y salida'),
+      appBar: buildAppTopBar(
+        title: 'Registros de ingreso y salida',
         actions: [
           IconButton(
             onPressed: _refresh,

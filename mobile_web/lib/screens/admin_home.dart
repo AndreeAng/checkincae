@@ -4,7 +4,6 @@ import 'admin_dashboard_screen.dart';
 import 'admin_users_screen.dart';
 import 'admin_worksites_screen.dart';
 import 'admin_checkins_screen.dart';
-import 'profile_screen.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
@@ -21,7 +20,6 @@ class _AdminHomeState extends State<AdminHome> {
     AdminUsersScreen(),
     AdminWorkSitesScreen(),
     AdminCheckinsScreen(),
-    ProfileScreen(),
   ];
 
   @override
@@ -47,10 +45,6 @@ class _AdminHomeState extends State<AdminHome> {
           NavigationDestination(
             icon: Icon(Icons.fact_check),
             label: 'Registros',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person),
-            label: 'Cuenta',
           ),
         ],
       ),

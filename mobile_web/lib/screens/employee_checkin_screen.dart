@@ -13,6 +13,7 @@ import '../providers/auth_provider.dart';
 import '../utils/photo_cache.dart';
 import '../utils/bo_time.dart';
 import 'employee_history_screen.dart';
+import 'profile_screen.dart';
 
 class EmployeeCheckinScreen extends StatefulWidget {
   const EmployeeCheckinScreen({super.key});
@@ -253,6 +254,17 @@ class _EmployeeCheckinScreenState extends State<EmployeeCheckinScreen> {
                           tooltip: 'Cerrar sesión',
                           onPressed: () => auth.logout(),
                           icon: const Icon(Icons.logout),
+                        ),
+                        IconButton(
+                          tooltip: 'Mi cuenta',
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const ProfileScreen(),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.person),
                         ),
                         const Spacer(),
                         const Icon(

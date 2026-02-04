@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 import '../models/checkin.dart';
 import '../providers/auth_provider.dart';
 import '../utils/photo_url.dart';
+import 'profile_screen.dart';
 import '../utils/bo_time.dart';
+import '../widgets/app_top_bar.dart';
 
 class EmployeeHistoryScreen extends StatefulWidget {
   const EmployeeHistoryScreen({super.key});
@@ -51,12 +53,21 @@ class _EmployeeHistoryScreenState extends State<EmployeeHistoryScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mi historial'),
+      appBar: buildAppTopBar(
+        title: 'Mi historial',
         actions: [
           IconButton(
             onPressed: () => setState(() => _future = _load()),
             icon: const Icon(Icons.refresh),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const ProfileScreen()),
+              );
+            },
+            icon: const Icon(Icons.person),
+            tooltip: 'Mi cuenta',
           ),
         ],
       ),

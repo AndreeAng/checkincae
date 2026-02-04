@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../models/worksite.dart';
 import '../providers/auth_provider.dart';
+import '../widgets/app_top_bar.dart';
 
 class AdminWorkSitesScreen extends StatefulWidget {
   const AdminWorkSitesScreen({super.key});
@@ -139,8 +140,8 @@ class _AdminWorkSitesScreenState extends State<AdminWorkSitesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Lugares de trabajo'),
+      appBar: buildAppTopBar(
+        title: 'Lugares de trabajo',
         actions: [
           IconButton(
             onPressed: _refresh,

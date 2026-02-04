@@ -29,6 +29,27 @@ class CheckInApp extends StatelessWidget {
           inputDecorationTheme: const InputDecorationTheme(
             border: OutlineInputBorder(),
           ),
+          navigationBarTheme: NavigationBarThemeData(
+            height: 64,
+            backgroundColor: Colors.white,
+            indicatorColor: const Color(0xFFFFEDD5),
+            labelTextStyle: MaterialStateProperty.resolveWith(
+              (states) => TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+                color: states.contains(MaterialState.selected)
+                    ? const Color(0xFF0F172A)
+                    : const Color(0xFF64748B),
+              ),
+            ),
+            iconTheme: MaterialStateProperty.resolveWith(
+              (states) => IconThemeData(
+                color: states.contains(MaterialState.selected)
+                    ? const Color(0xFFF59E0B)
+                    : const Color(0xFF94A3B8),
+              ),
+            ),
+          ),
         ),
         home: const RootRouter(),
       ),

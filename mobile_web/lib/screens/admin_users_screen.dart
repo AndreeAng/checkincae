@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../models/worksite.dart';
 import '../providers/auth_provider.dart';
+import 'profile_screen.dart';
+import '../widgets/app_top_bar.dart';
 
 class AdminUsersScreen extends StatefulWidget {
   const AdminUsersScreen({super.key});
@@ -211,8 +213,8 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Empleados'),
+      appBar: buildAppTopBar(
+        title: 'Empleados',
         actions: [
           IconButton(
             onPressed: _refresh,
@@ -221,6 +223,15 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
           IconButton(
             onPressed: () => _openUserDialog(),
             icon: const Icon(Icons.person_add),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const ProfileScreen()),
+              );
+            },
+            icon: const Icon(Icons.person),
+            tooltip: 'Mi cuenta',
           ),
         ],
       ),
