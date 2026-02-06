@@ -29,7 +29,6 @@ class ProfileScreen extends StatelessWidget {
             Text('Usuario: ${user?.username ?? ''}'),
             Text('Rol: ${user?.role ?? ''}'),
             const SizedBox(height: 12),
-            Text('Servidor: ${auth.baseUrl}'),
             const Spacer(),
             SizedBox(
               width: double.infinity,

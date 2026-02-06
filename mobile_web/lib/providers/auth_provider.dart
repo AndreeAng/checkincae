@@ -25,11 +25,7 @@ class AuthProvider extends ChangeNotifier {
         _storage.read('token'),
         const Duration(seconds: 3),
       );
-      baseUrl = await _withTimeout<String?>(
-            _storage.read('baseUrl'),
-            const Duration(seconds: 3),
-          ) ??
-          AppConfig.defaultBaseUrl;
+      baseUrl = AppConfig.defaultBaseUrl;
 
       if (token != null) {
         try {
@@ -57,18 +53,10 @@ class AuthProvider extends ChangeNotifier {
   Future<void> login({
     required String username,
     required String password,
-    required String newBaseUrl,
   }) async {
     loading = true;
     notifyListeners();
-    baseUrl = newBaseUrl.trim();
-    if (baseUrl.endsWith('/')) {
-      baseUrl = baseUrl.substring(0, baseUrl.length - 1);
-    }
-    _withTimeout<void>(
-      _storage.write('baseUrl', baseUrl),
-      const Duration(seconds: 2),
-    );
+    baseUrl = AppConfig.defaultBaseUrl;
 
     try {
       final api = ApiService(baseUrl: baseUrl, token: null);

@@ -15,10 +15,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _baseUrlController = TextEditingController(text: AppConfig.defaultBaseUrl);
 
   String? _error;
-  bool _showServerField = false;
   bool _showPassword = false;
   bool _timedOut = false;
   static const _brandColor = Color(0xFFF59E0B);
@@ -29,7 +27,6 @@ class _LoginScreenState extends State<LoginScreen> {
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
-    _baseUrlController.dispose();
     super.dispose();
   }
 
@@ -46,7 +43,6 @@ class _LoginScreenState extends State<LoginScreen> {
           .login(
             username: _usernameController.text.trim(),
             password: _passwordController.text,
-            newBaseUrl: _baseUrlController.text.trim(),
           )
           .timeout(const Duration(seconds: 15));
     } catch (error) {
@@ -206,35 +202,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                               ),
                               const SizedBox(height: 8),
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: TextButton.icon(
-                                  onPressed: () => setState(
-                                    () => _showServerField = !_showServerField,
-                                  ),
-                                  icon: Icon(
-                                    _showServerField ? Icons.expand_less : Icons.tune,
-                                  ),
-                                  label: const Text('Configurar servidor'),
-                                ),
-                              ),
-                              if (_showServerField) ...[
-                                TextFormField(
-                                  controller: _baseUrlController,
-                                  decoration: const InputDecoration(
-                                    labelText: 'URL del servidor',
-                                    hintText: 'http://localhost:4000',
-                                    prefixIcon: Icon(Icons.link),
-                                  ),
-                                  validator: (value) {
-                                    if (value == null || value.trim().isEmpty) {
-                                      return 'La URL es obligatoria';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                const SizedBox(height: 8),
-                              ],
                               if (_error != null)
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 8),
